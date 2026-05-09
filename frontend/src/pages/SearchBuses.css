@@ -1,0 +1,677 @@
+.search-container {
+  min-height: 100vh;
+  background: #f0f2f5;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* HEADER */
+.search-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.header-route {
+  color: white;
+}
+
+.route-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 2px 0;
+}
+
+.bus-count {
+  font-size: 13px;
+  opacity: 0.85;
+  margin: 0;
+}
+
+/* LOADING */
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  gap: 16px;
+  color: #888;
+  font-size: 15px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e0e7ff;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* RESULTS */
+.results-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* WALKING BANNER */
+.walking-banner {
+  background: white;
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  border-left: 4px solid #f59e0b;
+}
+
+.walking-banner-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.walking-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.walking-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 4px 0;
+}
+
+.walking-sub {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+}
+
+.walking-options {
+  display: flex;
+  align-items: center;
+  background: #fffbeb;
+  border-radius: 12px;
+  padding: 14px 16px;
+  gap: 0;
+}
+
+.walk-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.walk-option-icon {
+  font-size: 24px;
+}
+
+.walk-option-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #92400e;
+  margin: 0 0 2px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.walk-option-detail {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.walk-divider {
+  width: 1px;
+  height: 36px;
+  background: #fde68a;
+  margin: 0 16px;
+}
+
+/* CITY BANNER */
+.city-banner {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #166534;
+  font-weight: 500;
+}
+
+/* BUS LIST */
+.bus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bus-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition: all 0.2s;
+  border: 1.5px solid transparent;
+}
+
+.bus-card:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.12);
+  transform: translateY(-2px);
+}
+
+.bus-left {
+  flex: 1;
+}
+
+.bus-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 8px 0;
+}
+
+.bus-type-badge {
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.bus-middle {
+  flex: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.bus-time-box,
+.bus-city-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bus-time {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1a1a2e;
+}
+
+.bus-time-label,
+.bus-city-label {
+  font-size: 11px;
+  color: #aaa;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bus-city {
+  font-size: 14px;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.bus-arrow {
+  font-size: 20px;
+  color: #ddd;
+}
+
+.bus-right {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.seats-left {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 800;
+  color: #667eea;
+  margin: 0;
+}
+
+.book-button {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  transition: all 0.2s;
+}
+
+.book-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+/* FILTER TABS */
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.filter-tab {
+  padding: 10px 20px;
+  border: 2px solid #e0e7ff;
+  border-radius: 25px;
+  background: white;
+  color: #667eea;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-tab.active {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* TRAIN CARD */
+.train-card {
+  border-left: 4px solid #f59e0b !important;
+}
+
+.mode-badge {
+  position: absolute;
+  top: -1px;
+  right: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 0 0 8px 8px;
+}
+
+.mode-badge.bus {
+  background: #eef2ff;
+  color: #667eea;
+}
+
+.mode-badge.train {
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.bus-card {
+  position: relative;
+}
+
+.duration-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.duration-time {
+  font-size: 14px;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.explore-banner {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 16px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.explore-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: white;
+}
+
+.explore-banner-icon {
+  font-size: 32px;
+}
+
+.explore-banner-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 3px 0;
+  color: white;
+}
+
+.explore-banner-sub {
+  font-size: 13px;
+  opacity: 0.85;
+  margin: 0;
+  color: white;
+}
+
+.explore-banner-btn {
+  background: white;
+  color: #667eea;
+  border: none;
+  padding: 11px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s;
+}
+
+.explore-banner-btn:hover {
+  transform: translateY(-2px);
+}
+
+
+/* ───────────────── RESPONSIVE DESIGN ───────────────── */
+
+@media (max-width: 992px) {
+
+  .search-header {
+    padding: 14px 18px;
+  }
+
+  .results-wrapper {
+    max-width: 100%;
+    padding: 18px 14px;
+  }
+
+  .bus-card {
+    gap: 18px;
+  }
+
+  .bus-middle {
+    flex: 1;
+  }
+
+  .explore-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .explore-banner-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .search-container {
+    overflow-x: hidden;
+  }
+
+  .search-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .route-title {
+    font-size: 18px;
+  }
+
+  .bus-count {
+    font-size: 12px;
+  }
+
+  .results-wrapper {
+    padding: 14px 12px;
+    gap: 12px;
+  }
+
+  .walking-banner,
+  .bus-card,
+  .explore-banner {
+    border-radius: 14px;
+  }
+
+  .walking-banner {
+    padding: 16px;
+  }
+
+  .walking-banner-top {
+    align-items: center;
+  }
+
+  .walking-options {
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .walk-divider {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+  }
+
+  .walk-option {
+    width: 100%;
+  }
+
+  .filter-tabs {
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-tab {
+    white-space: nowrap;
+    padding: 9px 18px;
+    font-size: 12px;
+  }
+
+  .bus-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .bus-left,
+  .bus-middle,
+  .bus-right {
+    width: 100%;
+  }
+
+  .bus-middle {
+    justify-content: space-between;
+    margin: 8px 0;
+  }
+
+  .bus-right {
+    align-items: flex-start;
+  }
+
+  .price {
+    font-size: 22px;
+  }
+
+  .book-button {
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .explore-banner {
+    padding: 18px 16px;
+  }
+
+  .explore-banner-left {
+    align-items: flex-start;
+  }
+
+  .explore-banner-title {
+    font-size: 15px;
+  }
+
+  .explore-banner-sub {
+    font-size: 12px;
+  }
+
+  .explore-banner-btn {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .search-header {
+    padding: 14px 12px;
+  }
+
+  .back-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .route-title {
+    font-size: 16px;
+  }
+
+  .results-wrapper {
+    padding: 12px 10px;
+  }
+
+  .walking-banner,
+  .bus-card,
+  .explore-banner {
+    padding: 14px;
+  }
+
+  .walking-icon,
+  .explore-banner-icon {
+    font-size: 26px;
+  }
+
+  .walking-title,
+  .explore-banner-title {
+    font-size: 14px;
+  }
+
+  .walking-sub,
+  .explore-banner-sub {
+    font-size: 12px;
+  }
+
+  .walk-option-title {
+    font-size: 11px;
+  }
+
+  .walk-option-detail {
+    font-size: 12px;
+  }
+
+  .city-banner {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .bus-name {
+    font-size: 15px;
+  }
+
+  .bus-type-badge {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+
+  .bus-time {
+    font-size: 17px;
+  }
+
+  .bus-city {
+    font-size: 13px;
+  }
+
+  .duration-time {
+    font-size: 12px;
+  }
+
+  .price {
+    font-size: 20px;
+  }
+
+  .book-button {
+    padding: 11px;
+    font-size: 13px;
+  }
+
+  .mode-badge {
+    right: 10px;
+    font-size: 10px;
+  }
+
+  .explore-banner-left {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .explore-banner-btn {
+    font-size: 13px;
+  }
+}

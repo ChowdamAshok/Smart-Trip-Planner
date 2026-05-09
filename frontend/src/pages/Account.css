@@ -1,0 +1,681 @@
+.account-wrapper {
+  min-height: 100vh;
+  background: #f0f2f5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.account-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* NOT LOGGED IN */
+.not-logged-in {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 65px);
+  text-align: center;
+  padding: 20px;
+}
+
+.nli-icon {
+  font-size: 60px;
+  margin-bottom: 16px;
+}
+
+.not-logged-in h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0 0 8px 0;
+}
+
+.not-logged-in p {
+  color: #888;
+  margin: 0 0 20px 0;
+}
+
+.nli-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 13px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* SIDEBAR */
+.account-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.account-avatar-section {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 20px rgba(102,126,234,0.3);
+}
+
+.account-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 0 auto 12px auto;
+  border: 3px solid rgba(255,255,255,0.4);
+}
+
+.account-avatar-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.account-avatar-email {
+  font-size: 12px;
+  opacity: 0.8;
+  margin: 0 0 10px 0;
+  word-break: break-all;
+}
+
+.account-role-badge {
+  background: rgba(255,255,255,0.2);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* STATS */
+.account-stats {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: #f8f9ff;
+  border-radius: 10px;
+  padding: 12px 8px;
+}
+
+.stat-number {
+  font-size: 20px;
+  font-weight: 800;
+  color: #667eea;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #aaa;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* MENU */
+.account-menu {
+  background: white;
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.account-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.account-menu-item:hover {
+  background: #f0f2f5;
+  color: #667eea;
+}
+
+.account-menu-item.active {
+  background: #eef2ff;
+  color: #667eea;
+}
+
+.account-menu-item.logout {
+  color: #dc2626;
+  margin-top: 4px;
+  border-top: 1px solid #f0f2f5;
+  padding-top: 14px;
+}
+
+.account-menu-item.logout:hover {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+/* CONTENT */
+.account-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.account-card {
+  background: white;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.account-card-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px dashed #e0e7ff;
+}
+
+.account-card-header h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0 0 4px 0;
+}
+
+.account-card-header p {
+  font-size: 13px;
+  color: #aaa;
+  margin: 0;
+}
+
+/* FORM */
+.account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.account-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.account-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.account-form-group label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.account-form-group input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #e0e7ff;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  background: #f8f9ff;
+  transition: all 0.15s;
+}
+
+.account-form-group input:focus {
+  border-color: #667eea;
+  background: white;
+}
+
+/* INFO BOX */
+.account-info-box {
+  background: #f8f9ff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  border: 1.5px solid #e0e7ff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.account-info-box p {
+  font-size: 13px;
+  color: #555;
+  margin: 0;
+}
+
+.account-info-box strong {
+  color: #1a1a2e;
+}
+
+/* MESSAGES */
+.account-msg {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.account-msg.success {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1.5px solid #bbf7d0;
+}
+
+.account-msg.error {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1.5px solid #fecaca;
+}
+
+/* SAVE BUTTON */
+.account-save-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(102,126,234,0.3);
+  transition: all 0.2s;
+}
+
+.account-save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(102,126,234,0.4);
+}
+
+.account-save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* PASSWORD TIPS */
+.password-tips {
+  background: #fffbeb;
+  border: 1.5px solid #fde68a;
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.tips-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #92400e;
+  margin: 0 0 8px 0;
+}
+
+.password-tips ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.password-tips ul li {
+  font-size: 13px;
+  color: #78350f;
+}
+
+
+/* =====================================
+   PROFESSIONAL RESPONSIVE ACCOUNT PAGE
+===================================== */
+
+/* MOBILE FIRST IMPROVEMENTS */
+
+@media (max-width: 992px) {
+
+  .account-container {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .account-sidebar {
+    width: 100%;
+  }
+}
+
+/* =====================================
+   TABLET VIEW
+===================================== */
+
+@media (max-width: 768px) {
+
+  .account-wrapper {
+    background: #f5f7fb;
+  }
+
+  .account-container {
+    padding: 16px 12px 24px;
+    gap: 16px;
+  }
+
+  /* SIDEBAR */
+  .account-sidebar {
+    gap: 14px;
+  }
+
+  /* PROFILE CARD */
+  .account-avatar-section {
+    border-radius: 20px;
+    padding: 22px 18px;
+  }
+
+  .account-avatar {
+    width: 78px;
+    height: 78px;
+    font-size: 34px;
+    margin-bottom: 14px;
+  }
+
+  .account-avatar-name {
+    font-size: 19px;
+  }
+
+  .account-avatar-email {
+    font-size: 12px;
+  }
+
+  /* STATS */
+  .account-stats {
+    border-radius: 16px;
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .stat-box {
+    padding: 14px 10px;
+    border-radius: 14px;
+  }
+
+  .stat-number {
+    font-size: 22px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  /* MENU */
+  .account-menu {
+    border-radius: 16px;
+    padding: 10px;
+  }
+
+  .account-menu-item {
+    min-height: 48px;
+    border-radius: 12px;
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  /* CONTENT */
+  .account-content {
+    gap: 16px;
+  }
+
+  .account-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .account-card-header {
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+  }
+
+  .account-card-header h2 {
+    font-size: 20px;
+  }
+
+  .account-card-header p {
+    font-size: 12px;
+  }
+
+  /* FORM */
+  .account-form {
+    gap: 14px;
+  }
+
+  .account-form-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .account-form-group label {
+    font-size: 11px;
+  }
+
+  .account-form-group input {
+    min-height: 48px;
+    font-size: 14px;
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+
+  /* INFO BOX */
+  .account-info-box {
+    border-radius: 12px;
+    padding: 14px;
+  }
+
+  /* BUTTON */
+  .account-save-btn {
+    min-height: 50px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+
+  /* PASSWORD TIPS */
+  .password-tips {
+    border-radius: 14px;
+    padding: 14px;
+  }
+}
+
+/* =====================================
+   MOBILE VIEW
+===================================== */
+
+@media (max-width: 480px) {
+
+  .account-container {
+    padding: 12px 10px 20px;
+    gap: 14px;
+  }
+
+  /* PROFILE SECTION */
+  .account-avatar-section {
+    padding: 20px 14px;
+    border-radius: 18px;
+  }
+
+  .account-avatar {
+    width: 72px;
+    height: 72px;
+    font-size: 30px;
+  }
+
+  .account-avatar-name {
+    font-size: 18px;
+  }
+
+  .account-avatar-email {
+    font-size: 11px;
+  }
+
+  .account-role-badge {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  /* STATS */
+  .account-stats {
+    grid-template-columns: 1fr 1fr;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .stat-box {
+    padding: 12px 8px;
+  }
+
+  .stat-number {
+    font-size: 18px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+  }
+
+  /* MENU */
+  .account-menu {
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  .account-menu-item {
+    min-height: 46px;
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  /* CARDS */
+  .account-card {
+    padding: 16px 14px;
+    border-radius: 18px;
+  }
+
+  .account-card-header h2 {
+    font-size: 18px;
+  }
+
+  .account-card-header p {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  /* INPUTS */
+  .account-form-group input {
+    min-height: 46px;
+    font-size: 13px;
+    padding: 11px 12px;
+  }
+
+  /* MESSAGE */
+  .account-msg {
+    font-size: 13px;
+    border-radius: 12px;
+  }
+
+  /* BUTTON */
+  .account-save-btn {
+    min-height: 48px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  /* LOGIN PAGE */
+  .not-logged-in {
+    padding: 18px;
+  }
+
+  .nli-icon {
+    font-size: 52px;
+  }
+
+  .not-logged-in h2 {
+    font-size: 22px;
+  }
+
+  .not-logged-in p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .nli-btn {
+    width: 100%;
+    max-width: 260px;
+    min-height: 48px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+
+  /* PASSWORD TIPS */
+  .tips-title {
+    font-size: 12px;
+  }
+
+  .password-tips ul li {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+/* =====================================
+   EXTRA SMALL DEVICES
+===================================== */
+
+@media (max-width: 360px) {
+
+  .account-container {
+    padding: 10px 8px 18px;
+  }
+
+  .account-card {
+    padding: 14px 12px;
+  }
+
+  .account-menu-item {
+    font-size: 12px;
+  }
+
+  .account-save-btn {
+    font-size: 13px;
+  }
+
+  .stat-number {
+    font-size: 16px;
+  }
+}

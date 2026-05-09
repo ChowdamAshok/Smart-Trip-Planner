@@ -1,0 +1,708 @@
+.payment-wrapper {
+  min-height: 100vh;
+  background: #f0f2f5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.payment-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ORDER SUMMARY */
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 16px;
+  padding: 18px 20px;
+  color: white;
+}
+
+.summary-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.summary-section {
+  background: white;
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #aaa;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin: 0 0 14px 0;
+}
+
+/* JOURNEY ROUTE */
+.journey-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding: 14px;
+  background: #f8f9ff;
+  border-radius: 12px;
+}
+
+.journey-city {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.city-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1a1a2e;
+}
+
+.city-label {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.journey-arrow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  padding: 0 12px;
+  font-size: 20px;
+}
+
+.arrow-line {
+  flex: 1;
+  height: 2px;
+  background: #e0e7ff;
+  border-radius: 2px;
+}
+
+/* DETAIL GRID */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.detail-item.full {
+  grid-column: 1 / -1;
+}
+
+.detail-label {
+  font-size: 11px;
+  color: #aaa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.detail-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.seat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.seat-chip {
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* INSURANCE */
+.insurance-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  border: 2px solid #e0e7ff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #f8f9ff;
+}
+
+.insurance-box.selected {
+  border-color: #667eea;
+  background: #eef2ff;
+}
+
+.insurance-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.insurance-icon { font-size: 28px; }
+
+.insurance-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 3px 0;
+}
+
+.insurance-sub {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+}
+
+.insurance-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.insurance-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.insurance-toggle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e0e7ff;
+  color: #667eea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.insurance-toggle.on {
+  background: #667eea;
+  color: white;
+}
+
+/* FARE SIDE */
+.fare-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: sticky;
+  top: 80px;
+}
+
+.fare-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.fare-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 16px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px dashed #e0e7ff;
+}
+
+.fare-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 14px;
+}
+
+.fare-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f2f5;
+  font-size: 14px;
+  color: #555;
+}
+
+.fare-row span:last-child {
+  font-weight: 600;
+  color: #333;
+}
+
+.fare-row.discount span:last-child {
+  color: #16a34a;
+}
+
+.fare-row.insurance-row span:last-child {
+  color: #888;
+}
+
+.fare-row.insurance-row.active span:last-child {
+  color: #667eea;
+  font-weight: 700;
+}
+
+.fare-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+}
+
+.fare-total span:first-child {
+  font-size: 14px;
+  font-weight: 700;
+  color: #555;
+}
+
+.total-amount {
+  font-size: 26px;
+  font-weight: 800;
+  color: #667eea;
+}
+
+.pay-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(102,126,234,0.35);
+  transition: all 0.2s;
+  margin-bottom: 10px;
+}
+
+.pay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102,126,234,0.45);
+}
+
+.pay-note {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  margin: 0;
+}
+
+/* PASSENGER CARD */
+.passenger-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.passenger-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.passenger-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.passenger-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 3px 0;
+}
+
+.passenger-email {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+}
+
+/* SUCCESS PAGE */
+.success-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 65px);
+  padding: 20px;
+}
+
+.success-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+}
+
+.success-icon {
+  font-size: 60px;
+  margin-bottom: 16px;
+}
+
+.success-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0 0 8px 0;
+}
+
+.success-id {
+  font-size: 14px;
+  color: #888;
+  margin: 0 0 16px 0;
+}
+
+.success-msg {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.success-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.success-detail span {
+  font-size: 14px;
+  color: #444;
+  font-weight: 500;
+}
+
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.re-download-btn {
+  width: 100%;
+  padding: 13px;
+  background: #eef2ff;
+  color: #667eea;
+  border: 2px solid #c7d2fe;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.go-home-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.my-bookings-btn {
+  width: 100%;
+  padding: 13px;
+  background: white;
+  color: #555;
+  border: 2px solid #e0e7ff;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.journey-city.right {
+  align-items: flex-end;
+}
+
+.bus-icon-mid {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.success-detail {
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.success-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.sdlabel {
+  color: #aaa;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sdvalue {
+  font-weight: 700;
+  color: #1a1a2e;
+  font-size: 14px;
+}
+
+.price-green {
+  color: #667eea !important;
+  font-size: 18px !important;
+}
+
+/* ───────────────── RESPONSIVE DESIGN ───────────────── */
+
+@media (max-width: 992px) {
+
+  .payment-container {
+    grid-template-columns: 1fr;
+  }
+
+  .fare-side {
+    position: static;
+  }
+
+  .journey-route {
+    flex-direction: column;
+    gap: 14px;
+    text-align: center;
+  }
+
+  .journey-arrow {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .payment-wrapper {
+    overflow-x: hidden;
+  }
+
+  .payment-container {
+    padding: 16px 12px;
+    gap: 14px;
+  }
+
+  .summary-header,
+  .summary-section,
+  .fare-card,
+  .passenger-card,
+  .success-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .summary-header h2 {
+    font-size: 16px;
+  }
+
+  .city-name {
+    font-size: 16px;
+  }
+
+  .detail-value {
+    font-size: 13px;
+  }
+
+  .fare-total {
+    padding: 12px 14px;
+  }
+
+  .total-amount {
+    font-size: 22px;
+  }
+
+  .pay-btn,
+  .go-home-btn,
+  .re-download-btn,
+  .my-bookings-btn {
+    padding: 13px;
+    font-size: 14px;
+  }
+
+  .insurance-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .insurance-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .passenger-info {
+    align-items: flex-start;
+  }
+
+  .success-card {
+    padding: 24px 18px;
+  }
+
+  .success-title {
+    font-size: 22px;
+  }
+
+  .success-detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .payment-container {
+    padding: 12px 10px;
+  }
+
+  .summary-header,
+  .summary-section,
+  .fare-card,
+  .passenger-card {
+    padding: 14px;
+  }
+
+  .journey-city {
+    width: 100%;
+  }
+
+  .city-name {
+    font-size: 15px;
+  }
+
+  .journey-arrow {
+    padding: 0;
+  }
+
+  .seat-chip {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .insurance-title {
+    font-size: 13px;
+  }
+
+  .insurance-sub {
+    font-size: 11px;
+  }
+
+  .fare-title {
+    font-size: 14px;
+  }
+
+  .fare-row {
+    font-size: 13px;
+  }
+
+  .total-amount {
+    font-size: 20px;
+  }
+
+  .passenger-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .passenger-name {
+    font-size: 14px;
+  }
+
+  .passenger-email {
+    font-size: 12px;
+  }
+
+  .success-icon {
+    font-size: 52px;
+  }
+
+  .success-title {
+    font-size: 20px;
+  }
+
+  .success-msg {
+    font-size: 14px;
+  }
+
+  .success-detail {
+    padding: 14px;
+  }
+
+  .sdvalue {
+    font-size: 13px;
+  }
+
+  .price-green {
+    font-size: 16px !important;
+  }
+}

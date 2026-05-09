@@ -1,0 +1,642 @@
+.bookings-wrapper {
+  min-height: 100vh;
+  background: #f0f2f5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.bookings-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.bookings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.bookings-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1a1a2e;
+  margin: 0 0 4px 0;
+}
+
+.bookings-sub {
+  font-size: 14px;
+  color: #888;
+  margin: 0;
+}
+
+.home-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+}
+
+/* NO BOOKINGS */
+.no-bookings {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.no-bookings-icon {
+  font-size: 60px;
+  margin-bottom: 16px;
+}
+
+.no-bookings h3 {
+  font-size: 20px;
+  color: #1a1a2e;
+  margin: 0 0 8px 0;
+}
+
+.no-bookings p {
+  color: #888;
+  margin: 0 0 20px 0;
+}
+
+.book-now-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 13px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* BOOKINGS LIST */
+.bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.booking-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border: 1.5px solid #f0f0f8;
+  transition: all 0.2s;
+}
+
+.booking-card:hover {
+  box-shadow: 0 6px 24px rgba(102,126,234,0.12);
+  border-color: #c7d2fe;
+}
+
+.booking-card-top {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.booking-id-badge {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+}
+
+.booking-date-badge {
+  font-size: 11px;
+  color: rgba(255,255,255,0.75);
+}
+
+.booking-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ROUTE */
+.booking-route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f9ff;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.booking-city {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+.booking-city.right {
+  align-items: flex-end;
+}
+
+.bcity-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1a1a2e;
+}
+
+.bcity-label {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.booking-route-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+}
+
+.route-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #667eea;
+  flex-shrink: 0;
+}
+
+.route-line-dashed {
+  flex: 1;
+  height: 2px;
+  background: repeating-linear-gradient(
+    to right,
+    #c7d2fe 0px,
+    #c7d2fe 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+.bus-emoji-small {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.travel-date-badge {
+  font-size: 12px;
+  font-weight: 700;
+  color: #667eea;
+  background: #eef2ff;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* DETAIL ROW */
+.booking-details-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.bdetail {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bdetail-label {
+  font-size: 10px;
+  color: #aaa;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.bdetail-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.bdetail-value.price {
+  color: #667eea;
+  font-size: 16px;
+}
+
+/* SEATS */
+.booking-seats-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.seats-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #888;
+}
+
+.seat-tag {
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1.5px solid #c7d2fe;
+}
+
+/* FOOTER */
+.booking-card-footer {
+  padding: 12px 18px;
+  border-top: 1px solid #f0f0f8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fafafa;
+}
+
+.insurance-tag {
+  font-size: 12px;
+  color: #888;
+  font-weight: 500;
+}
+
+.download-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(102,126,234,0.25);
+  transition: all 0.2s;
+}
+
+.download-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(102,126,234,0.35);
+}
+
+
+/* =====================================
+   PROFESSIONAL RESPONSIVE BOOKINGS PAGE
+===================================== */
+
+/* =====================================
+   TABLET VIEW
+===================================== */
+
+@media (max-width: 992px) {
+
+  .bookings-container {
+    max-width: 100%;
+    padding: 20px 14px;
+  }
+
+  .booking-details-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =====================================
+   MOBILE VIEW
+===================================== */
+
+@media (max-width: 768px) {
+
+  .bookings-wrapper {
+    background: #f5f7fb;
+  }
+
+  .bookings-container {
+    padding: 16px 12px 24px;
+  }
+
+  /* HEADER */
+  .bookings-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .bookings-title {
+    font-size: 22px;
+  }
+
+  .bookings-sub {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .home-btn {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+
+  /* EMPTY STATE */
+  .no-bookings {
+    padding: 42px 18px;
+    border-radius: 22px;
+  }
+
+  .no-bookings-icon {
+    font-size: 54px;
+  }
+
+  .no-bookings h3 {
+    font-size: 20px;
+  }
+
+  .no-bookings p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .book-now-btn {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+
+  /* LIST */
+  .bookings-list {
+    gap: 18px;
+  }
+
+  /* CARD */
+  .booking-card {
+    border-radius: 22px;
+    overflow: hidden;
+  }
+
+  .booking-card-top {
+    padding: 12px 14px;
+  }
+
+  .booking-id-badge {
+    font-size: 12px;
+  }
+
+  .booking-date-badge {
+    font-size: 10px;
+  }
+
+  .booking-card-body {
+    padding: 16px 14px;
+    gap: 16px;
+  }
+
+  /* ROUTE */
+  .booking-route {
+    flex-direction: column;
+    gap: 14px;
+
+    padding: 18px 14px;
+    border-radius: 16px;
+
+    text-align: center;
+  }
+
+  .booking-city,
+  .booking-city.right {
+    align-items: center;
+  }
+
+  .bcity-name {
+    font-size: 18px;
+  }
+
+  .bcity-label {
+    font-size: 10px;
+  }
+
+  .booking-route-center {
+    width: 100%;
+    padding: 0;
+    gap: 8px;
+  }
+
+  .route-dots {
+    width: 100%;
+  }
+
+  .travel-date-badge {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  /* DETAILS */
+  .booking-details-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .bdetail {
+    background: #f8f9ff;
+    padding: 12px;
+    border-radius: 14px;
+  }
+
+  .bdetail-label {
+    font-size: 9px;
+  }
+
+  .bdetail-value {
+    font-size: 13px;
+  }
+
+  .bdetail-value.price {
+    font-size: 17px;
+  }
+
+  /* SEATS */
+  .booking-seats-row {
+    gap: 8px;
+  }
+
+  .seat-tag {
+    padding: 5px 12px;
+    font-size: 11px;
+    border-radius: 20px;
+  }
+
+  /* FOOTER */
+  .booking-card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+
+    padding: 14px;
+  }
+
+  .insurance-tag {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .download-btn {
+    width: 100%;
+    min-height: 46px;
+
+    border-radius: 12px;
+    font-size: 13px;
+  }
+}
+
+/* =====================================
+   SMALL MOBILE VIEW
+===================================== */
+
+@media (max-width: 480px) {
+
+  .bookings-container {
+    padding: 12px 10px 20px;
+  }
+
+  /* HEADER */
+  .bookings-title {
+    font-size: 20px;
+  }
+
+  .bookings-sub {
+    font-size: 12px;
+  }
+
+  /* CARD */
+  .booking-card {
+    border-radius: 18px;
+  }
+
+  .booking-card-top {
+    padding: 10px 12px;
+  }
+
+  .booking-card-body {
+    padding: 14px 12px;
+  }
+
+  /* ROUTE */
+  .booking-route {
+    padding: 14px 12px;
+    gap: 12px;
+  }
+
+  .bcity-name {
+    font-size: 16px;
+  }
+
+  .bus-emoji-small {
+    font-size: 16px;
+  }
+
+  .travel-date-badge {
+    font-size: 10px;
+  }
+
+  /* DETAILS */
+  .booking-details-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .bdetail {
+    padding: 11px 12px;
+  }
+
+  .bdetail-value {
+    font-size: 12px;
+  }
+
+  .bdetail-value.price {
+    font-size: 16px;
+  }
+
+  /* SEATS */
+  .booking-seats-row {
+    gap: 6px;
+  }
+
+  .seats-label {
+    width: 100%;
+    margin-bottom: 2px;
+  }
+
+  .seat-tag {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+
+  /* BUTTONS */
+  .download-btn,
+  .home-btn,
+  .book-now-btn {
+    min-height: 46px;
+    font-size: 13px;
+  }
+
+  /* EMPTY STATE */
+  .no-bookings {
+    padding: 36px 14px;
+  }
+
+  .no-bookings h3 {
+    font-size: 18px;
+  }
+
+  .no-bookings p {
+    font-size: 12px;
+  }
+}
+
+/* =====================================
+   EXTRA SMALL DEVICES
+===================================== */
+
+@media (max-width: 360px) {
+
+  .bookings-container {
+    padding: 10px 8px 18px;
+  }
+
+  .booking-card-body {
+    padding: 12px 10px;
+  }
+
+  .bcity-name {
+    font-size: 15px;
+  }
+
+  .download-btn {
+    font-size: 12px;
+  }
+
+  .booking-id-badge {
+    font-size: 11px;
+  }
+}

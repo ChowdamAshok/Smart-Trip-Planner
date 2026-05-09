@@ -1,0 +1,22 @@
+# Node modules
+frontend/node_modules
+
+# React build
+frontend/build
+
+# Logs
+*.log
+
+# Environment files
+.env
+
+# Java
+*.class
+*.jar
+target/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
