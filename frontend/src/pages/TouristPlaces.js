@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import Navbar from '../components/Navbar';
-import './TouristPlaces.css';
+import React, { useState, useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import Navbar from "../components/Navbar";
+import "./TouristPlaces.css";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
 // CUSTOM MARKER ICONS
 const createIcon = (color) =>
   L.divIcon({
-    className: '',
+    className: "",
     html: `
       <div style="
         width:22px;
@@ -32,28 +32,28 @@ const createIcon = (color) =>
     iconAnchor: [11, 11],
   });
 
-const touristIcon = createIcon('#667eea');
-const hotelIcon = createIcon('#f59e0b');
-const restaurantIcon = createIcon('#10b981');
+const touristIcon = createIcon("#667eea");
+const hotelIcon = createIcon("#f59e0b");
+const restaurantIcon = createIcon("#10b981");
 
 const CATEGORIES = [
   {
-    key: 'tourist',
-    label: 'Tourist Places',
-    icon: '🏛️',
-    color: '#667eea',
+    key: "tourist",
+    label: "Tourist Places",
+    icon: "🏛️",
+    color: "#667eea",
   },
   {
-    key: 'hotel',
-    label: 'Hotels',
-    icon: '🏨',
-    color: '#f59e0b',
+    key: "hotel",
+    label: "Hotels",
+    icon: "🏨",
+    color: "#f59e0b",
   },
   {
-    key: 'restaurant',
-    label: 'Restaurants',
-    icon: '🍽️',
-    color: '#10b981',
+    key: "restaurant",
+    label: "Restaurants",
+    icon: "🍽️",
+    color: "#10b981",
   },
 ];
 
@@ -61,10 +61,9 @@ function TouristPlaces() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  const destination = searchParams.get('city') || 'Chennai';
+  const destination = searchParams.get("city") || "Chennai";
 
-  const [activeCategory, setActiveCategory] =
-    useState('tourist');
+  const [activeCategory, setActiveCategory] = useState("tourist");
 
   const [places, setPlaces] = useState([]);
 
@@ -72,11 +71,9 @@ function TouristPlaces() {
 
   const [cityCoords, setCityCoords] = useState(null);
 
-  const [searchCity, setSearchCity] =
-    useState(destination);
+  const [searchCity, setSearchCity] = useState(destination);
 
-  const [inputCity, setInputCity] =
-    useState(destination);
+  const [inputCity, setInputCity] = useState(destination);
 
   // FETCH PLACES
   const fetchPlaces = async (city, category) => {
@@ -86,13 +83,13 @@ function TouristPlaces() {
     try {
       // GET CITY COORDINATES
       const geoRes = await fetch(
-        `https://nominatim.openstreetmap.org/search?q=${city},India&format=json&limit=1`
+        `https://nominatim.openstreetmap.org/search?q=${city},India&format=json&limit=1`,
       );
 
       const geoData = await geoRes.json();
 
       if (geoData.length === 0) {
-        alert('City not found!');
+        alert("City not found!");
         setLoading(false);
         return;
       }
@@ -102,10 +99,10 @@ function TouristPlaces() {
 
       setCityCoords([lat, lon]);
 
-      let overpassQuery = '';
+      let overpassQuery = "";
 
       // TOURIST PLACES
-      if (category === 'tourist') {
+      if (category === "tourist") {
         overpassQuery = `
           [out:json][timeout:40];
           (
@@ -126,7 +123,7 @@ function TouristPlaces() {
       }
 
       // HOTELS
-      else if (category === 'hotel') {
+      else if (category === "hotel") {
         overpassQuery = `
           [out:json][timeout:40];
           (
@@ -176,13 +173,34 @@ function TouristPlaces() {
       }
 
       // FETCH OVERPASS DATA
-      const overpassRes = await fetch(
-        'https://overpass-api.de/api/interpreter',
-        {
-          method: 'POST',
-          body: overpassQuery,
+      let overpassRes = null;
+      const overpassServers = [
+        "https://overpass-api.de/api/interpreter",
+        "https://overpass.kumi.systems/api/interpreter",
+        "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+      ];
+
+      for (let server of overpassServers) {
+        try {
+          overpassRes = await fetch(server, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: "data=" + encodeURIComponent(overpassQuery),
+          });
+          if (overpassRes.ok) break;
+        } catch (e) {
+          console.log("Server failed, trying next:", server);
+          continue;
         }
-      );
+      }
+
+      if (!overpassRes || !overpassRes.ok) {
+        console.error("All Overpass servers failed");
+        setLoading(false);
+        return;
+      }
 
       const overpassData = await overpassRes.json();
 
@@ -190,12 +208,7 @@ function TouristPlaces() {
 
       // MAP DATA
       const mapped = elements
-        .filter(
-          (e) =>
-            (e.lat || e.center) &&
-            e.tags &&
-            e.tags.name
-        )
+        .filter((e) => (e.lat || e.center) && e.tags && e.tags.name)
         .map((e) => ({
           id: e.id,
 
@@ -205,25 +218,15 @@ function TouristPlaces() {
 
           lon: e.lon || e.center?.lon,
 
-          type:
-            e.tags.tourism ||
-            e.tags.amenity ||
-            e.tags.historic ||
-            'place',
+          type: e.tags.tourism || e.tags.amenity || e.tags.historic || "place",
 
-          cuisine: e.tags.cuisine || '',
+          cuisine: e.tags.cuisine || "",
 
-          phone:
-            e.tags.phone ||
-            e.tags['contact:phone'] ||
-            '',
+          phone: e.tags.phone || e.tags["contact:phone"] || "",
 
-          website:
-            e.tags.website ||
-            e.tags['contact:website'] ||
-            '',
+          website: e.tags.website || e.tags["contact:website"] || "",
 
-          opening: e.tags.opening_hours || '',
+          opening: e.tags.opening_hours || "",
 
           category,
         }));
@@ -232,16 +235,12 @@ function TouristPlaces() {
       const uniquePlaces = mapped.filter(
         (place, index, self) =>
           index ===
-          self.findIndex(
-            (p) =>
-              p.name === place.name &&
-              p.lat === place.lat
-          )
+          self.findIndex((p) => p.name === place.name && p.lat === place.lat),
       );
 
       setPlaces(uniquePlaces);
     } catch (err) {
-      console.error('Error fetching places:', err);
+      console.error("Error fetching places:", err);
     }
 
     setLoading(false);
@@ -254,18 +253,16 @@ function TouristPlaces() {
 
   // MARKER ICON
   const getMarkerIcon = (category) => {
-    if (category === 'tourist') return touristIcon;
-    if (category === 'hotel') return hotelIcon;
+    if (category === "tourist") return touristIcon;
+    if (category === "hotel") return hotelIcon;
     return restaurantIcon;
   };
 
   // CATEGORY COLOR
   const getCategoryColor = (category) => {
-    const found = CATEGORIES.find(
-      (c) => c.key === category
-    );
+    const found = CATEGORIES.find((c) => c.key === category);
 
-    return found ? found.color : '#667eea';
+    return found ? found.color : "#667eea";
   };
 
   return (
@@ -277,37 +274,28 @@ function TouristPlaces() {
       <div className="tourist-hero">
         <h1>Explore {searchCity}</h1>
 
-        <p>
-          Discover tourist places, hotels and restaurants
-        </p>
+        <p>Discover tourist places, hotels and restaurants</p>
 
         <div className="tourist-search-bar">
           <input
             type="text"
             value={inputCity}
             placeholder="Enter city name..."
-            onChange={(e) =>
-              setInputCity(e.target.value)
-            }
+            onChange={(e) => setInputCity(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') {
+              if (e.key === "Enter") {
                 setSearchCity(inputCity);
               }
             }}
           />
 
-          <button
-            onClick={() => setSearchCity(inputCity)}
-          >
-            Explore
-          </button>
+          <button onClick={() => setSearchCity(inputCity)}>Explore</button>
         </div>
       </div>
 
       {/* CONTAINER */}
 
       <div className="tourist-container">
-
         {/* CATEGORY TABS */}
 
         <div className="category-tabs">
@@ -315,9 +303,7 @@ function TouristPlaces() {
             <button
               key={cat.key}
               className={`category-tab ${
-                activeCategory === cat.key
-                  ? 'active'
-                  : ''
+                activeCategory === cat.key ? "active" : ""
               }`}
               style={
                 activeCategory === cat.key
@@ -328,26 +314,16 @@ function TouristPlaces() {
                     }
                   : {}
               }
-              onClick={() =>
-                setActiveCategory(cat.key)
-              }
+              onClick={() => setActiveCategory(cat.key)}
             >
               {cat.icon} {cat.label}
-
-              {!loading &&
-                activeCategory === cat.key &&
-                places.length > 0 && (
-                  <span className="cat-count">
-                    {places.length}
-                  </span>
-                )}
+              {!loading && activeCategory === cat.key && places.length > 0 && (
+                <span className="cat-count">{places.length}</span>
+              )}
             </button>
           ))}
 
-          <button
-            className="back-to-search-btn"
-            onClick={() => navigate(-1)}
-          >
+          <button className="back-to-search-btn" onClick={() => navigate(-1)}>
             ← Back
           </button>
         </div>
@@ -355,7 +331,6 @@ function TouristPlaces() {
         {/* MAIN CONTENT */}
 
         <div className="tourist-content">
-
           {/* MAP SIDE */}
 
           <div className="tourist-map-side">
@@ -371,54 +346,34 @@ function TouristPlaces() {
                 {places.map((place) => (
                   <Marker
                     key={place.id}
-                    position={[
-                      place.lat,
-                      place.lon,
-                    ]}
-                    icon={getMarkerIcon(
-                      place.category
-                    )}
+                    position={[place.lat, place.lon]}
+                    icon={getMarkerIcon(place.category)}
                   >
                     <Popup>
                       <div
                         style={{
-                          minWidth: '160px',
+                          minWidth: "160px",
                         }}
                       >
-                        <strong>
-                          {place.name}
-                        </strong>
+                        <strong>{place.name}</strong>
 
                         <br />
 
                         <span
                           style={{
-                            fontSize: '12px',
-                            color: '#777',
-                            textTransform:
-                              'capitalize',
+                            fontSize: "12px",
+                            color: "#777",
+                            textTransform: "capitalize",
                           }}
                         >
                           {place.type}
                         </span>
 
-                        {place.cuisine && (
-                          <p>
-                            🍴 {place.cuisine}
-                          </p>
-                        )}
+                        {place.cuisine && <p>🍴 {place.cuisine}</p>}
 
-                        {place.phone && (
-                          <p>
-                            📞 {place.phone}
-                          </p>
-                        )}
+                        {place.phone && <p>📞 {place.phone}</p>}
 
-                        {place.opening && (
-                          <p>
-                            🕐 {place.opening}
-                          </p>
-                        )}
+                        {place.opening && <p>🕐 {place.opening}</p>}
                       </div>
                     </Popup>
                   </Marker>
@@ -430,10 +385,7 @@ function TouristPlaces() {
 
             <div className="map-legend-box">
               {CATEGORIES.map((cat) => (
-                <div
-                  key={cat.key}
-                  className="legend-item-row"
-                >
+                <div key={cat.key} className="legend-item-row">
                   <div
                     className="legend-dot"
                     style={{
@@ -452,30 +404,15 @@ function TouristPlaces() {
           {/* LIST SIDE */}
 
           <div className="tourist-list-side">
-
             <div className="list-header">
               <h3>
-                {
-                  CATEGORIES.find(
-                    (c) =>
-                      c.key ===
-                      activeCategory
-                  )?.icon
-                }{' '}
-                {
-                  CATEGORIES.find(
-                    (c) =>
-                      c.key ===
-                      activeCategory
-                  )?.label
-                }{' '}
-                in {searchCity}
+                {CATEGORIES.find((c) => c.key === activeCategory)?.icon}{" "}
+                {CATEGORIES.find((c) => c.key === activeCategory)?.label} in{" "}
+                {searchCity}
               </h3>
 
               {!loading && (
-                <span className="list-count">
-                  {places.length} found
-                </span>
+                <span className="list-count">{places.length} found</span>
               )}
             </div>
 
@@ -487,19 +424,14 @@ function TouristPlaces() {
               </div>
             ) : places.length === 0 ? (
               <div className="no-places">
-                <p className="no-places-icon">
-                  🔍
-                </p>
+                <p className="no-places-icon">🔍</p>
 
-                <p>
-                  No places found in{' '}
-                  {searchCity}
-                </p>
+                <p>No places found in {searchCity}</p>
 
                 <p
                   style={{
-                    fontSize: '12px',
-                    color: '#999',
+                    fontSize: "12px",
+                    color: "#999",
                   }}
                 >
                   Try another city
@@ -507,109 +439,77 @@ function TouristPlaces() {
               </div>
             ) : (
               <div className="places-list">
+                {places.map((place, index) => (
+                  <div className="place-card" key={place.id}>
+                    {/* LEFT */}
 
-                {places.map(
-                  (place, index) => (
-                    <div
-                      className="place-card"
-                      key={place.id}
-                    >
-
-                      {/* LEFT */}
-
-                      <div className="place-card-left">
-                        <div
-                          className="place-number"
-                          style={{
-                            background:
-                              getCategoryColor(
-                                place.category
-                              ),
-                          }}
-                        >
-                          {index + 1}
-                        </div>
+                    <div className="place-card-left">
+                      <div
+                        className="place-number"
+                        style={{
+                          background: getCategoryColor(place.category),
+                        }}
+                      >
+                        {index + 1}
                       </div>
+                    </div>
 
-                      {/* BODY */}
+                    {/* BODY */}
 
-                      <div className="place-card-body">
+                    <div className="place-card-body">
+                      <h4 className="place-name">{place.name}</h4>
 
-                        <h4 className="place-name">
-                          {place.name}
-                        </h4>
+                      <span
+                        className="place-type-badge"
+                        style={{
+                          background: getCategoryColor(place.category) + "20",
+                          color: getCategoryColor(place.category),
+                        }}
+                      >
+                        {place.type}
+                      </span>
 
-                        <span
-                          className="place-type-badge"
-                          style={{
-                            background:
-                              getCategoryColor(
-                                place.category
-                              ) + '20',
-                            color:
-                              getCategoryColor(
-                                place.category
-                              ),
-                          }}
-                        >
-                          {place.type}
-                        </span>
+                      {place.cuisine && (
+                        <p className="place-detail">🍴 {place.cuisine}</p>
+                      )}
 
-                        {place.cuisine && (
-                          <p className="place-detail">
-                            🍴{' '}
-                            {place.cuisine}
-                          </p>
-                        )}
+                      {place.opening && (
+                        <p className="place-detail">🕐 {place.opening}</p>
+                      )}
 
-                        {place.opening && (
-                          <p className="place-detail">
-                            🕐{' '}
-                            {place.opening}
-                          </p>
-                        )}
+                      {place.phone && (
+                        <p className="place-detail">📞 {place.phone}</p>
+                      )}
 
-                        {place.phone && (
-                          <p className="place-detail">
-                            📞 {place.phone}
-                          </p>
-                        )}
-
-                        {place.website && (
-                          <a
-                            className="place-website"
-                            href={
-                              place.website
-                            }
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            🌐 Visit Website
-                          </a>
-                        )}
-                      </div>
-
-                      {/* RIGHT */}
-
-                      <div className="place-card-right">
+                      {place.website && (
                         <a
-                          className="directions-btn"
-                          href={`https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lon}`}
+                          className="place-website"
+                          href={place.website}
                           target="_blank"
                           rel="noreferrer"
                         >
-                          Directions
+                          🌐 Visit Website
                         </a>
-                      </div>
-
+                      )}
                     </div>
-                  )
-                )}
 
+                    {/* RIGHT */}
+
+                    <div className="place-card-right">
+                      <a
+                        className="directions-btn"
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lon}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        Directions
+                      </a>
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
           </div>
-
         </div>
       </div>
     </div>

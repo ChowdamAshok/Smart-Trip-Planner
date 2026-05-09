@@ -5,6 +5,11 @@ services:
     build: ./backend
     ports:
       - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ep-delicate-thunder-am5eqpdl-pooler.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require
+      - SPRING_DATASOURCE_USERNAME=neondb_owner
+      - SPRING_DATASOURCE_PASSWORD=npg_OdN1vYmK2EzJ
+      - PORT=8080
 
   frontend:
     build: ./frontend
