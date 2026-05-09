@@ -20,14 +20,14 @@ function Login() {
     setError('');
     try {
       if (isLogin) {
-        const res = await axios.post('http://localhost:8080/api/users/login', {
+        const res = await axios.post('https://smart-trip-planner-xxc3.onrender.com/api/users/login', {
           email: form.email,
           password: form.password,
         });
         localStorage.setItem('user', JSON.stringify(res.data));
         navigate('/');
       } else {
-        await axios.post('http://localhost:8080/api/users/register', {
+        await axios.post('https://smart-trip-planner-xxc3.onrender.com/api/users/register', {
           name: form.name,
           email: form.email,
           password: form.password,

@@ -98,10 +98,10 @@ function SearchBuses() {
       try {
         const [busRes, trainRes] = await Promise.all([
           axios.get(
-            `http://localhost:8080/api/buses/search?from=${searchFrom}&to=${to}`,
+            `https://smart-trip-planner-xxc3.onrender.com/api/buses/search?from=${searchFrom}&to=${to}`,
           ),
           axios.get(
-            `http://localhost:8080/api/trains/search?from=${searchFrom}&to=${to}`,
+            `https://smart-trip-planner-xxc3.onrender.com/api/trains/search?from=${searchFrom}&to=${to}`,
           ),
         ]);
         setBuses(busRes.data);

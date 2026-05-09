@@ -71,7 +71,7 @@ function Account() {
     try {
       // Step 1 — verify current password via login API
       const loginRes = await axios.post(
-        "http://localhost:8080/api/users/login",
+        "https://smart-trip-planner-xxc3.onrender.com/api/users/login",
         {
           email: user.email,
           password: passwordForm.currentPassword,
@@ -81,7 +81,7 @@ function Account() {
       // Step 2 — if login success reset password
       if (loginRes.status === 200 && loginRes.data) {
         const resetRes = await axios.post(
-          "http://localhost:8080/api/users/resetpassword",
+          "https://smart-trip-planner-xxc3.onrender.com/api/users/resetpassword",
           {
             email: user.email,
             newPassword: passwordForm.newPassword,
