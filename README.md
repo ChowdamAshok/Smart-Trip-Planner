@@ -1,4 +1,4 @@
-# 🚌 Smart Trip Planner
+# Smart Trip Planner
 
 <div align="center">
 
