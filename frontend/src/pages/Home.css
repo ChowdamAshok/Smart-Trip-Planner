@@ -15,18 +15,27 @@
   width: 100%;
   z-index: 1;
 }
+.map-wrapper:hover .map {
+  transform: scale(1.02);
+}
+
+.map {
+  transition: transform 0.8s ease;
+}
 
 .search-overlay {
   position: absolute;
   top: 24px;
   left: 50%;
   transform: translateX(-50%);
-  background: white;
   border-radius: 20px;
   padding: 24px 28px;
   width: 400px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.18);
   z-index: 1000;
+  backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(255,255,255,0.4);
 }
 
 .overlay-badge {
@@ -102,6 +111,7 @@
 .overlay-search-btn:hover {
   transform: translateY(-2px);
 }
+
 
 .overlay-tags {
   display: flex;
@@ -458,6 +468,18 @@
   align-items: center;
   gap: 6px;
   border: 2px solid #e0e7ff;
+  animation: floatCard 4s ease-in-out infinite;
+}
+@keyframes floatCard {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .about-img-card span {
@@ -841,19 +863,15 @@
 
   .overlay-input-group input {
     min-height: 50px;
-
     padding: 12px 14px;
     border-radius: 14px;
-
     font-size: 14px;
   }
 
   .overlay-search-btn {
     min-height: 52px;
-
     border-radius: 14px;
     font-size: 14px;
-
     margin-bottom: 14px;
   }
 
@@ -963,6 +981,18 @@
     font-size: 13px;
     line-height: 1.7;
   }
+
+  .feature-card:hover,
+.route-card:hover,
+.testimonial-card:hover {
+  transform: translateY(-6px) scale(1.02);
+
+  box-shadow:
+    0 12px 35px rgba(102, 126, 234, 0.337),
+    0 0 18px rgba(102, 126, 234, 0.314);
+
+  border-color: #667eea;
+}
 
   /* HOW IT WORKS */
   .steps-grid {
